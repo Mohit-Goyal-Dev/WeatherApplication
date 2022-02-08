@@ -10,21 +10,26 @@
       - exactly 1 digit to the right of decimal
   -->
 <div class="container" *ngIf="cityDetails">
-
-  <p class="cityName">{{ cityDetails }}, {{ cityDetails }}</p>
+  <p class="cityName">{{ cityDetails.city }}, {{ cityDetails.country }}</p>
   <div fxLayout="row" fxLayoutAlign="center none" fxLayoutGap="15px">
-  <div class="container-weather" fxLayout="row">
-
-    <mat-card class="cityData" *ngIf="i<4">
-      <h3 class="date">  </h3>
-      <mat-card>
-        <img [src]="" class="weatherIcon">
-        <span class="weather"> </span>
-        <br>
-        <span class="cityTemp"> °C </span>
+    <div
+      class="container-weather"
+      fxLayout="row"
+      *ngFor="let cityDayDetail of cityDetails.weather; let i = index"
+    >
+      <mat-card class="cityData" *ngIf="i < 4">
+        <h3 class="date">{{ cityDayDetail.date | date: "mediumDate" }}</h3>
+        <mat-card>
+          <img [src]="cityDayDetail.weather_image" class="weatherIcon" />
+          <span class="weather">
+            {{ cityDayDetail.weather_name }}
+          </span>
+          <br />
+          <span class="cityTemp"
+            >{{ cityDayDetail.temperature | number: "2.1-1" }} °C
+          </span>
+        </mat-card>
       </mat-card>
-    </mat-card>
-
-  </div>
+    </div>
   </div>
 </div>

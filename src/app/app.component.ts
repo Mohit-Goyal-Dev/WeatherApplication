@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { WeatherService } from './services/weather.service';
-import { IWeatherData } from './models/IWeatherData.interface';
+import { Component, OnInit } from "@angular/core";
+import { WeatherService } from "./services/weather.service";
+import { IWeatherData } from "./models/IWeatherData.interface";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  title = 'My Weather App';
+  title = "My Weather App";
   cityDetails: IWeatherData;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  constructor(
-    private weatherService: WeatherService,
-  ) {}
+  constructor(private weatherService: WeatherService) {}
   getCityDetails(woeid) {
     /*
       CHALLENGE
        - pass the city id to service.getCityDetails(woeid)
     */
+    this.weatherService.getCityDetails(woeid).subscribe((response) => {
+      // console.log(response);
+      this.cityDetails = response;
+      console.log(this.cityDetails);
+    });
   }
 }

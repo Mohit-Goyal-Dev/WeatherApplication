@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IWeatherData } from '../../models/IWeatherData.interface';
+import { Component, OnInit, Input } from "@angular/core";
+import { IWeatherData } from "../../models/IWeatherData.interface";
 
 @Component({
-  selector: 'app-city',
-  templateUrl: './city.component.html',
-  styleUrls: ['./city.component.css']
+  selector: "app-city",
+  templateUrl: "./city.component.html",
+  styleUrls: ["./city.component.css"],
 })
 export class CityComponent implements OnInit {
   /*
@@ -13,11 +13,9 @@ export class CityComponent implements OnInit {
      - display the city details in the template
   */
 
-  cityDetails: IWeatherData;
+  @Input("cityDetails") cityDetails: IWeatherData;
   i;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
